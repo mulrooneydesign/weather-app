@@ -4,14 +4,10 @@
   --grey-lines: rgba(255,255,255,0.2);
   --blue-color: #5090D0;
   --warning: #ff8e8e;
-
   --container-padding: 10px 20px; 
   --light-border: 2px solid var(--grey-lines);
-
   --border-radius: 4px;
-
   --bottom-margin: 20px;
-
   --active-border: 2px solid var(--blue-color)
 }
 
@@ -24,7 +20,7 @@ body {
 
 .grid {
     display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-columns: 1fr;
 }
 
 .input-container {
@@ -72,3 +68,20 @@ input:active, input:hover, input:focus {
     border-radius: var(--border-radius);
     margin-bottom: var(--bottom-margin);
 }
+
+
+@media screen and (min-width: 900px) {
+    .grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+    }
+
+    .city-container {
+        margin-right: 20px;
+    }
+    
+    .city-container:nth-child(3n) {
+        margin-right: 0;
+    } 
+}
+
