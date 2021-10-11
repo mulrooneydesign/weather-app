@@ -17,6 +17,7 @@
     "webpack-merge": "^5.8.0"
   },
   "dependencies": {
+    "@babel/core": "^7.15.8",
     "babel-loader": "^8.2.2",
     "clean-webpack-plugin": "^4.0.0",
     "copy-webpack-plugin": "^9.0.1",
