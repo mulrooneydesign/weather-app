@@ -1,0 +1,74 @@
+:root {
+  --var-background: #000;
+  --var-font: #fff;
+  --grey-lines: rgba(255,255,255,0.2);
+  --blue-color: #5090D0;
+  --warning: #ff8e8e;
+
+  --container-padding: 10px 20px; 
+  --light-border: 2px solid var(--grey-lines);
+
+  --border-radius: 4px;
+
+  --bottom-margin: 20px;
+
+  --active-border: 2px solid var(--blue-color)
+}
+
+body {
+  background-color: var(--var-background);
+  font-family: "IBM Plex Sans", Arial, Helvetica, sans-serif;
+  color: var(--var-font);
+  padding: 10px;
+}
+
+.grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+}
+
+.input-container {
+    padding: var(--container-padding);
+    border: 1px solid var(--grey-lines);
+    border-radius: var(--border-radius);
+    margin-bottom: var(--bottom-margin);
+}
+
+label {
+    display: block;
+    margin-bottom: 10px;
+}
+
+input, button {
+    padding: 14px 16px;
+    font-size: 1.25rem;
+    border-radius: var(--border-radius);
+    margin-bottom: var(--bottom-margin);
+    background: #2b2b2b;
+    border: var(--light-border);
+    color: white;
+}
+
+button {
+    background-color: black;
+    color: white;
+    border: var(--light-border);
+}
+
+
+button:active, 
+button:hover, 
+button:focus {
+    border: var(--active-border);
+}
+
+input:active, input:hover, input:focus {
+    border: var(--active-border);
+}
+
+.city-container {
+    padding: var(--container-padding);
+    border: var(--light-border);
+    border-radius: var(--border-radius);
+    margin-bottom: var(--bottom-margin);
+}
