@@ -1,6 +1,5 @@
 import '../css/app.css'
 
-
 const stringToHTML = (string) => {
 	const parser = new DOMParser()
 	const doc = parser.parseFromString(string, 'text/html')
@@ -71,9 +70,9 @@ const createApp = (data) => {
 const getWeatherData = (cityName) => {
   const key = process.env.WEATHER_KEY;
 
-  fetch(
-    "https://api.openweathermap.org/data/2.5/weather?q=" + cityName + "&appid=" + key + "&units=metric"
-  ) 
+  const units = 'metric'
+
+  fetch(`/.netlify/functions/fetch-weather/fetch-weather.js?cityName=${cityName}&units=${units}`)
     .then((response) => {
       return response.json()
     })
