@@ -1,2 +1,0 @@
-document.getElementById("app"),window.onload=function(){fetch("https://api.openweathermap.org/data/2.5/weather?id=6167865&appid=fbc0b4938540f382649a7acc69937a93").then((function(n){return n.json()})).then((function(n){console.log(n)})).catch((function(){console.log(error)}))};
-//# sourceMappingURL=bundle.c6a531d1e8044949d40d.js.map
