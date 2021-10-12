@@ -78,7 +78,7 @@ const getWeatherData = (cityName) => {
 }
 
 window.onload = function () {
-  createSwitch(container, gridContainer, stateProxy.isCelcius)
+  createSwitch(container, gridContainer)
   getWeatherData('Barcelona')
   createInput(container, gridContainer, getWeatherData)
 }
