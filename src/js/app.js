@@ -1,5 +1,5 @@
 import '../css/app.css'
-import { temperatureScaleSelector } from './components/temperatureScaleSelector'
+import { createSwitch } from './components/createSwitch'
 import { stringToHTML } from './components/stringToHTML'
 import { createCity } from './components/createCity'
 import { createInput } from './components/createInput'
@@ -9,25 +9,59 @@ const container = document.querySelector('#app')
 const grid = stringToHTML(`<div class="grid"></div>`)
 const gridContainer = container.insertBefore(grid, null)
 
-const createDataObject = (data) => {
+let units = ''
+
+const createDataObject = (data, units) => {
+  if (stateProxy.isCelcius) {
+    units = 'metric'
+  } else {
+    units = 'imperial'
+  }
+
+  let tempSymbol = ''
+  if (units === 'metric') {
+    tempSymbol = ' &#176C'
+  } else {
+    tempSymbol = ' &#176F'
+  }
+
   let fetchedData = {
     city: data.name,
     longitude: data.coord.lon,
     latitude: data.coord.lat,
     description: data.weather[0].description,
     main: data.weather[0].main,
-    temperature: data.main.temp,
-    temperature_max: data.main.temp_max,
-    temperature_min: data.main.temp_min,
+    temperature: data.main.temp + tempSymbol,
+    temperature_max: data.main.temp_max + tempSymbol,
+    temperature_min: data.main.temp_min + tempSymbol,
   }
 
   return fetchedData
 }
 
+const initialState = {
+  isCelcius: true,
+}
 
+const stateHandler = {
+  set: function (obj, prop, value) {
+    obj[prop] = value
+    return true
+  },
+}
+
+const stateProxy = new Proxy(initialState, stateHandler)
+
+export const tempSwitcher = () => {
+  stateProxy.isCelcius = !stateProxy.isCelcius
+}
 
 const getWeatherData = (cityName) => {
-  const units = 'metric'
+  if (stateProxy.isCelcius) {
+    units = 'metric'
+  } else {
+    units = 'imperial'
+  }
 
   fetch(
     `/.netlify/functions/fetch-weather/fetch-weather.js?cityName=${cityName}&units=${units}`
@@ -44,6 +78,7 @@ const getWeatherData = (cityName) => {
 }
 
 window.onload = function () {
+  createSwitch(container, gridContainer, stateProxy.isCelcius)
   getWeatherData('Barcelona')
   createInput(container, gridContainer, getWeatherData)
 }
