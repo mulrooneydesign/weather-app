@@ -1,34 +1,13 @@
 import '../css/app.css'
-
-const stringToHTML = (string) => {
-  const parser = new DOMParser()
-  const doc = parser.parseFromString(string, 'text/html')
-  return doc.body.firstChild
-}
+import { temperatureScaleSelector } from './components/temperatureScaleSelector'
+import { stringToHTML } from './components/stringToHTML'
+import { createCity } from './components/createCity'
+import { createInput } from './components/createInput'
 
 const container = document.querySelector('#app')
 
 const grid = stringToHTML(`<div class="grid"></div>`)
 const gridContainer = container.insertBefore(grid, null)
-
-const createInput = (container) => {
-  const inputHtml = stringToHTML(`
-  <div class="input-container">
-    <label for="city">City</label>
-    <input id="city" name="city" type="text" />
-    <button id="submit">Check New City</button>
-  </div>`)
-
-  container.insertBefore(inputHtml, gridContainer)
-
-  const button = document.querySelector('#submit')
-  const input = document.querySelector('#city')
-
-  button.addEventListener('click', (event) => {
-    event.preventDefault()
-    getWeatherData(input.value)
-  })
-}
 
 const createDataObject = (data) => {
   let fetchedData = {
@@ -45,24 +24,9 @@ const createDataObject = (data) => {
   return fetchedData
 }
 
-const createApp = (data) => {
-  const appHtml = stringToHTML(`
-    <div class="city-container">
-      <h1>${data.city}</h1>
-      <p><strong>Longitude:</strong> ${data.longitude}</p>
-      <p><strong>Latitude:</strong> ${data.latitude}</p>
-      <p><strong>Description:</strong> ${data.description}</p>
-      <p><strong>Short Description:</strong> ${data.main}</p>
-      <p><strong>Temperature Description:</strong> ${data.temperature}</p>
-      <p><strong>Max Temperature:</strong> ${data.temperature_max}</p>
-      <p><strong>Min Temperature:</strong> ${data.temperature_min}</p>
-    </div>`)
 
-  gridContainer.insertBefore(appHtml, null)
-}
 
 const getWeatherData = (cityName) => {
-
   const units = 'metric'
 
   fetch(
@@ -72,7 +36,7 @@ const getWeatherData = (cityName) => {
       return response.json()
     })
     .then((data) => {
-      createApp(createDataObject(data))
+      createCity(createDataObject(data), gridContainer)
     })
     .catch((error) => {
       console.log(response.message, error)
@@ -81,5 +45,5 @@ const getWeatherData = (cityName) => {
 
 window.onload = function () {
   getWeatherData('Barcelona')
-  createInput(container)
+  createInput(container, gridContainer, getWeatherData)
 }
