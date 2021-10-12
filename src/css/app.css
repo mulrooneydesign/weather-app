@@ -1,89 +1,89 @@
 :root {
   --var-background: #000;
   --var-font: #fff;
-  --grey-lines: rgba(255,255,255,0.2);
-  --blue-color: #5090D0;
+  --grey-lines: rgba(255, 255, 255, 0.2);
+  --blue-color: #5090d0;
   --warning: #ff8e8e;
-  --container-padding: 10px 20px; 
+  --container-padding: 10px 20px;
   --light-border: 2px solid var(--grey-lines);
   --border-radius: 4px;
   --bottom-margin: 20px;
-  --active-border: 2px solid var(--blue-color)
+  --active-border: 2px solid var(--blue-color);
 }
 
 body {
   background-color: var(--var-background);
-  font-family: "IBM Plex Sans", Arial, Helvetica, sans-serif;
+  font-family: 'IBM Plex Sans', Arial, Helvetica, sans-serif;
   color: var(--var-font);
   padding: 10px;
 }
 
 .grid {
-    display: grid;
-    grid-template-columns: 1fr;
+  display: grid;
+  grid-template-columns: 1fr;
 }
 
 .input-container {
-    padding: var(--container-padding);
-    border: 1px solid var(--grey-lines);
-    border-radius: var(--border-radius);
-    margin-bottom: var(--bottom-margin);
+  padding: var(--container-padding);
+  border: 1px solid var(--grey-lines);
+  border-radius: var(--border-radius);
+  margin-bottom: var(--bottom-margin);
 }
 
 label {
-    display: block;
-    margin-bottom: 10px;
+  display: block;
+  margin-bottom: 10px;
 }
 
-input, button {
-    padding: 14px 16px;
-    font-size: 1.25rem;
-    border-radius: var(--border-radius);
-    margin-bottom: var(--bottom-margin);
-    background: #2b2b2b;
-    border: var(--light-border);
-    color: white;
+input,
+button {
+  padding: 14px 16px;
+  font-size: 1.25rem;
+  border-radius: var(--border-radius);
+  margin-bottom: var(--bottom-margin);
+  background: #2b2b2b;
+  border: var(--light-border);
+  color: white;
 }
 
 button {
-    background-color: black;
-    color: white;
-    border: var(--light-border);
+  background-color: black;
+  color: white;
+  border: var(--light-border);
 }
 
-
-button:active, 
-button:hover, 
+button:active,
+button:hover,
 button:focus {
-    border: var(--active-border);
-    box-shadow: 0px 0px 10px 10px rgba(80,144,208,0.1);
+  border: var(--active-border);
+  box-shadow: 0px 0px 10px 10px rgba(80, 144, 208, 0.1);
 }
 
-input:active, input:hover, input:focus {
-    border: var(--active-border);
-    box-shadow: 0px 0px 10px 10px rgba(80,144,208,0.1);
+input:active,
+input:hover,
+input:focus {
+  border: var(--active-border);
+  box-shadow: 0px 0px 10px 10px rgba(80, 144, 208, 0.1);
 }
 
 .city-container {
-    padding: var(--container-padding);
-    border: var(--light-border);
-    border-radius: var(--border-radius);
-    margin-bottom: var(--bottom-margin);
+  padding: var(--container-padding);
+  border: var(--light-border);
+  border-radius: var(--border-radius);
+  margin-bottom: var(--bottom-margin);
 }
-
 
 @media screen and (min-width: 900px) {
-    .grid {
-        display: grid;
-        grid-template-columns: 1fr 1fr 1fr;
-    }
+  .grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+  }
 
-    .city-container {
-        margin-right: 20px;
-    }
-    
-    .city-container:nth-child(3n) {
-        margin-right: 0;
-    } 
+  .city-container {
+    margin-right: 20px;
+  }
+
+  .city-container:nth-child(3n) {
+    margin-right: 0;
+  }
 }
-
