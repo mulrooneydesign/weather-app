@@ -8,7 +8,7 @@ I used netlify functions to hide the API key from the client.
 
 ```npm install```
 
-You'll need an API key from (openweathermap.org/)[openweathermap.org/] to be saved in an .env file.
+You'll need an API key from [openweathermap.org/](openweathermap.org/) to be saved in an .env file.
 
 .env.example is provided. 
 
