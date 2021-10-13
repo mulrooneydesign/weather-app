@@ -57,6 +57,7 @@ button:hover,
 button:focus {
   border: var(--active-border);
   box-shadow: 0px 0px 10px 10px rgba(80, 144, 208, 0.1);
+  cursor: pointer;
 }
 
 input:active,
@@ -68,8 +69,16 @@ input:focus {
 
 .switch-button {
   position: absolute;
-  top: 30px;
+  top: 20px;
   right: 20px;
+}
+
+.switch-button span {
+  opacity: 0.2;
+}
+
+.switch-button .active {
+ opacity: 1;
 }
 
 .city-container {

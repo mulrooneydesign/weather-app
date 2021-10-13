@@ -14,4 +14,4 @@ You'll need an API key from [https://openweathermap.org/](https://openweathermap
 
 First Build  | Start Netlify
 ------------- | -------------
-npm run build | Yarn netlify dev
+npm run build | yarn netlify dev

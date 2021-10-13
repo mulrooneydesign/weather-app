@@ -47,7 +47,7 @@ const stateHandler = {
   set: function (obj, prop, value) {
     obj[prop] = value
     return true
-  },
+  }
 }
 
 const stateProxy = new Proxy(initialState, stateHandler)
