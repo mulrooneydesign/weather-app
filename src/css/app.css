@@ -56,7 +56,10 @@ button:focus {
 
 input:active,
 input:hover,
-input:focus {
+input:focus,
+.switch-button:active,
+.switch-button:hover,
+.switch-button:focus {
   border: var(--active-border);
   box-shadow: 0px 0px 10px 10px rgba(80, 144, 208, 0.1);
 }
@@ -72,7 +75,7 @@ input:focus {
 }
 
 .switch-button .active {
- opacity: 1;
+  opacity: 1;
 }
 
 

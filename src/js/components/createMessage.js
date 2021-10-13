@@ -19,7 +19,7 @@ export const createMessage = (container, referenceNode, message) => {
     const setMessage = (text) => {
         const message = document.querySelector('.message')
         message.children[0].innerText= text
-      }
+    }
 
     if(message) {
         setMessage(message)

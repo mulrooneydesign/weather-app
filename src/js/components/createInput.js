@@ -6,7 +6,7 @@ export const createInput = (container, referenceNode, fetchFunction) => {
     <div class="input-container">
       <div class="input-grid-item">
         <label for="city">City</label>
-        <input id="city" name="city" type="text" />
+        <input id="city" name="city" type="text" placeholder="Enter a city" />
       </div>
       <div class="input-grid-item">
         <button id="submit">Add City</button>
