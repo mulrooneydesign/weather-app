@@ -19,7 +19,7 @@ export const createSwitch = (parentContainer, referenceNode) => {
 
   button.addEventListener('click', (event) => {
 
-    if (button.children[0].innerText=== '°C') {
+    if (button.children[0].innerText === '°C') {
       button.children[0].innerText = '°F'
       button.children[1].innerText = '°C'
       tempSwitcher()

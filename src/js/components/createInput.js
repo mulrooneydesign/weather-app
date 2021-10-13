@@ -1,11 +1,16 @@
 import { stringToHTML } from './stringToHTML'
+import {createMessage} from './createMessage'
 
 export const createInput = (container, referenceNode, fetchFunction) => {
     const inputHtml = stringToHTML(`
     <div class="input-container">
-      <label for="city">City</label>
-      <input id="city" name="city" type="text" />
-      <button id="submit">Check New City</button>
+      <div class="input-grid-item">
+        <label for="city">City</label>
+        <input id="city" name="city" type="text" />
+      </div>
+      <div class="input-grid-item">
+        <button id="submit">Add City</button>
+      </div>
     </div>`)
   
     container.insertBefore(inputHtml, referenceNode)
@@ -15,7 +20,16 @@ export const createInput = (container, referenceNode, fetchFunction) => {
   
     button.addEventListener('click', (event) => {
       event.preventDefault()
-      fetchFunction(input.value)
+
+      createMessage(container, null, 'Searched results returned.')
+
+      const errorMessage = "You must enter a city name you wish to search for"
+
+      if(input.value !== '') {
+        fetchFunction(input.value)
+      } else {
+        createMessage(container, null, errorMessage)
+      }
     })
   }
   

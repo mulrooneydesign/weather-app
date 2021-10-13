@@ -1,8 +1,9 @@
 import '../css/app.css'
-import { createSwitch } from './components/createSwitch'
 import { stringToHTML } from './components/stringToHTML'
+import { createSwitch } from './components/createSwitch'
 import { createCity } from './components/createCity'
 import { createInput } from './components/createInput'
+import { createMessage } from './components/createMessage'
 
 const container = document.querySelector('#app')
 
@@ -45,6 +46,7 @@ const initialState = {
 
 const stateHandler = {
   set: function (obj, prop, value) {
+    createMessage(container, null, 'Temperature units changed')
     obj[prop] = value
     return true
   }
@@ -70,10 +72,10 @@ const getWeatherData = (cityName) => {
       return response.json()
     })
     .then((data) => {
-      createCity(createDataObject(data), gridContainer)
+      createCity(createDataObject(data), gridContainer)      
     })
     .catch((error) => {
-      console.log(response.message, error)
+      createMessage(container, null, error.error)
     })
 }
 
@@ -81,4 +83,5 @@ window.onload = function () {
   createSwitch(container, gridContainer)
   getWeatherData('Barcelona')
   createInput(container, gridContainer, getWeatherData)
+  createMessage(container, null, 'Type the name of a city or town into the search field and click add.')
 }

@@ -23,13 +23,6 @@ body {
   grid-template-columns: 1fr;
 }
 
-.input-container {
-  padding: var(--container-padding);
-  border: 1px solid var(--grey-lines);
-  border-radius: var(--border-radius);
-  margin-bottom: var(--bottom-margin);
-}
-
 label {
   display: block;
   margin-bottom: 10px;
@@ -44,6 +37,7 @@ button {
   background: #2b2b2b;
   border: var(--light-border);
   color: white;
+  box-sizing: border-box;
 }
 
 button {
@@ -81,11 +75,45 @@ input:focus {
  opacity: 1;
 }
 
+
+.input-container {
+  padding: var(--container-padding);
+  border: 1px solid var(--grey-lines);
+  border-radius: var(--border-radius);
+  margin-bottom: var(--bottom-margin);
+  display: grid;
+  grid-template-columns: 1fr;
+}
+
+.input-container input {
+  width: 100%;
+}
+
+.input-container button {
+  margin-top: 0;
+  width: 100%;
+}
+
 .city-container {
   padding: var(--container-padding);
   border: var(--light-border);
   border-radius: var(--border-radius);
   margin-bottom: var(--bottom-margin);
+}
+
+.message {
+  position: fixed;
+  bottom: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background: #1c1c1c;
+  width: calc(100% - 40px);
+  text-align: center;
+  left: 20px;
+  padding: 40px;
+  box-sizing: border-box;
+  right: 30px;
 }
 
 @media screen and (min-width: 900px) {
@@ -101,4 +129,34 @@ input:focus {
   .city-container:nth-child(3n) {
     margin-right: 0;
   }
+
+  .input-container {
+    grid-template-columns: 1fr 1fr 50%;
+  }
+
+  .input-container input {
+    width: calc(100% - 10px);
+  }
+
+  .input-container button {
+    margin-top: 31px;
+  }
+
+}
+
+@keyframes fadeDown {
+  0% {
+      opacity: 1;
+      transform: translateY(0);
+  }
+
+  100% {
+      opacity: 0;
+      transform: translateY(400px);
+  }
+}
+
+.removeMessage {
+  animation-name: fadeDown;
+  animation-duration: 1.2s;
 }
