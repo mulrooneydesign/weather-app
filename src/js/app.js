@@ -4,6 +4,7 @@ import { createSwitch } from './components/createSwitch'
 import { createCity } from './components/createCity'
 import { createInput } from './components/createInput'
 import { createMessage } from './components/createMessage'
+import { globeInit } from './components/globe/globe'
 
 const container = document.querySelector('#app')
 
@@ -84,4 +85,5 @@ window.onload = function () {
   getWeatherData('Barcelona')
   createInput(container, gridContainer, getWeatherData)
   createMessage(container, null, 'Type the name of a city or town into the search field and click add.')
+  globeInit()
 }
