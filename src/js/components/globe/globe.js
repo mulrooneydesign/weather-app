@@ -3,10 +3,9 @@ import * as THREE from 'three'
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js'
 
 export const globeInit = () => {
-
   //Variables for DAT GUI
   const data = {
-    size: 15
+    size: 15,
   }
 
   //texture
@@ -39,7 +38,7 @@ export const globeInit = () => {
   // Canvas
   const canvas = document.createElement('canvas')
   canvas.classList.add('globe')
-  document.body.appendChild(canvas);         
+  document.body.appendChild(canvas)
   console.log(canvas)
 
   // Scene
@@ -100,7 +99,10 @@ export const globeInit = () => {
 
   //Globe
   const globeGeometry = new THREE.SphereGeometry(data.size, 32, 16)
-  const globeMaterial = new THREE.MeshStandardMaterial({ map: earthColorTexture, normalMap: earthNormalMap })
+  const globeMaterial = new THREE.MeshStandardMaterial({
+    map: earthColorTexture,
+    normalMap: earthNormalMap,
+  })
   const globe = new THREE.Mesh(globeGeometry, globeMaterial)
   group.add(globe)
 
@@ -167,7 +169,6 @@ export const globeInit = () => {
     coords.sydney.longitude,
     15
   )
-
 
   const tick = () => {
     const elapsedTime = clock.getElapsedTime()

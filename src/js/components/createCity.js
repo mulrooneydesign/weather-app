@@ -12,6 +12,7 @@ export const createCity = (data, parentContainer) => {
         <p><strong>Max Temperature:</strong> ${data.temperature_max}</p>
         <p><strong>Min Temperature:</strong> ${data.temperature_min}</p>
       </div>`)
-  
-      parentContainer.insertBefore(cityHtml, null)
+
+      const whereToInsert = document.querySelector('.city-container')
+      parentContainer.insertBefore(cityHtml, whereToInsert)
   }
