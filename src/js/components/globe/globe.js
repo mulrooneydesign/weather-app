@@ -3,6 +3,12 @@ import * as THREE from 'three'
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js'
 
 export const globeInit = () => {
+
+  //Variables for DAT GUI
+  const data = {
+    size: 15
+  }
+
   //texture
   const loadingManager = new THREE.LoadingManager()
   loadingManager.onStart = () => {
@@ -23,13 +29,16 @@ export const globeInit = () => {
 
   const textureLoader = new THREE.TextureLoader(loadingManager)
 
-  const earthColorTexture = textureLoader.load('./earth.jpg')
+  const earthColorTexture = textureLoader.load('./2k_earth_daymap.jpg')
+  const earthNormalMap = textureLoader.load('./2k_earth_normal_map.jpg')
+  // const earthSpecularMap = textureLoaderMap.load('./2k_earth_specular_map.jpg')
 
   /**
    * Base
    */
   // Canvas
   const canvas = document.createElement('canvas')
+  canvas.classList.add('globe')
   document.body.appendChild(canvas);         
   console.log(canvas)
 
@@ -69,6 +78,7 @@ export const globeInit = () => {
   // Controls
   const controls = new OrbitControls(camera, canvas)
   controls.enableDamping = true
+  controls.enableZoom = false
 
   // Renderer
   const renderer = new THREE.WebGLRenderer({
@@ -89,11 +99,14 @@ export const globeInit = () => {
   scene.add(group)
 
   //Globe
-  const globeGeometry = new THREE.SphereGeometry(15, 32, 16)
-//   const globeMaterial = new THREE.MeshBasicMaterial({ map: earthColorTexture })
-  const globeMaterial = new THREE.MeshBasicMaterial({ color: 0xff00ff })
+  const globeGeometry = new THREE.SphereGeometry(data.size, 32, 16)
+  const globeMaterial = new THREE.MeshStandardMaterial({ map: earthColorTexture, normalMap: earthNormalMap })
   const globe = new THREE.Mesh(globeGeometry, globeMaterial)
   group.add(globe)
+
+  //Ambient Light
+  const ambientLight = new THREE.AmbientLight(0xffffff, 0.8)
+  scene.add(ambientLight)
 
   //Marker
   const makeMarker = (name) => {
@@ -103,7 +116,7 @@ export const globeInit = () => {
   }
 
   //Place object on globe surface
-  function placeObjectOnGlobe(object, lat, lon, radius) {
+  const placeObjectOnGlobe = (object, lat, lon, radius) => {
     group.add(object)
 
     const latRad = lat * (Math.PI / 180)
@@ -154,6 +167,7 @@ export const globeInit = () => {
     coords.sydney.longitude,
     15
   )
+
 
   const tick = () => {
     const elapsedTime = clock.getElapsedTime()

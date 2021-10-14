@@ -8,6 +8,7 @@
   --light-border: 2px solid var(--grey-lines);
   --border-radius: 4px;
   --bottom-margin: 20px;
+  --all-margin: 20px;
   --active-border: 2px solid var(--blue-color);
 }
 
@@ -15,12 +16,19 @@ body {
   background-color: var(--var-background);
   font-family: 'IBM Plex Sans', Arial, Helvetica, sans-serif;
   color: var(--var-font);
-  padding: 10px;
+  padding: 0;
+  margin: 0;
+}
+
+.title {
+  margin-left: 20px;
+  margin-bottom: 30px;
 }
 
 .grid {
   display: grid;
   grid-template-columns: 1fr;
+  margin: 20px;
 }
 
 label {
@@ -81,9 +89,9 @@ input:focus,
 
 .input-container {
   padding: var(--container-padding);
-  border: 1px solid var(--grey-lines);
+  border: 2px solid var(--grey-lines);
   border-radius: var(--border-radius);
-  margin-bottom: var(--bottom-margin);
+  margin: var(--all-margin);
   display: grid;
   grid-template-columns: 1fr;
 }
@@ -111,12 +119,11 @@ input:focus,
   flex-direction: column;
   justify-content: center;
   background: #1c1c1c;
-  width: calc(100% - 40px);
   text-align: center;
   left: 20px;
   padding: 40px;
   box-sizing: border-box;
-  right: 30px;
+  right: 20px;
 }
 
 @media screen and (min-width: 900px) {
