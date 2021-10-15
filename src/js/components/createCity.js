@@ -1,7 +1,7 @@
-import { stringToHTML } from "./stringToHTML"
+import { stringToHTML } from './stringToHTML'
 
 export const createCity = (data, parentContainer) => {
-    const cityHtml = stringToHTML(`
+  const cityHtml = stringToHTML(`
       <div class="city-container">
         <h1>${data.city}</h1>
         <p><strong>Longitude:</strong> ${data.longitude}</p>
@@ -13,6 +13,6 @@ export const createCity = (data, parentContainer) => {
         <p><strong>Min Temperature:</strong> ${data.temperature_min}</p>
       </div>`)
 
-      const whereToInsert = document.querySelector('.city-container')
-      parentContainer.insertBefore(cityHtml, whereToInsert)
-  }
+  const whereToInsert = document.querySelector('.city-container')
+  parentContainer.insertBefore(cityHtml, whereToInsert)
+}

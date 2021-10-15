@@ -1,5 +1,5 @@
 import './globe.css'
-import * as THREE from 'three'
+import { LoadingManager, TextureLoader, Clock, Scene, PerspectiveCamera, WebGLRenderer, Group, SphereGeometry, MeshStandardMaterial, MeshBasicMaterial, Mesh, AmbientLight } from 'three'
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js'
 
 export const globeInit = () => {
@@ -9,7 +9,7 @@ export const globeInit = () => {
   }
 
   //texture
-  const loadingManager = new THREE.LoadingManager()
+  const loadingManager = new LoadingManager()
   loadingManager.onStart = () => {
     console.log('On start')
   }
@@ -26,7 +26,7 @@ export const globeInit = () => {
     console.log('Loading complete!')
   }
 
-  const textureLoader = new THREE.TextureLoader(loadingManager)
+  const textureLoader = new TextureLoader(loadingManager)
 
   const earthColorTexture = textureLoader.load('./2k_earth_daymap.jpg')
   const earthNormalMap = textureLoader.load('./2k_earth_normal_map.jpg')
@@ -42,7 +42,7 @@ export const globeInit = () => {
   console.log(canvas)
 
   // Scene
-  const scene = new THREE.Scene()
+  const scene = new Scene()
 
   // Sizes
   const sizes = {
@@ -65,7 +65,7 @@ export const globeInit = () => {
   })
 
   // Camera
-  const camera = new THREE.PerspectiveCamera(
+  const camera = new PerspectiveCamera(
     75,
     sizes.width / sizes.height,
     0.1,
@@ -80,7 +80,7 @@ export const globeInit = () => {
   controls.enableZoom = false
 
   // Renderer
-  const renderer = new THREE.WebGLRenderer({
+  const renderer = new WebGLRenderer({
     canvas: canvas,
   })
 
@@ -88,33 +88,33 @@ export const globeInit = () => {
   renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2))
 
   // Animate
-  const clock = new THREE.Clock()
+  const clock = new Clock()
 
   //Scene Contents
   ////////////////
 
   //Group
-  const group = new THREE.Group()
+  const group = new Group()
   scene.add(group)
 
   //Globe
-  const globeGeometry = new THREE.SphereGeometry(data.size, 32, 16)
-  const globeMaterial = new THREE.MeshStandardMaterial({
+  const globeGeometry = new SphereGeometry(data.size, 32, 16)
+  const globeMaterial = new MeshStandardMaterial({
     map: earthColorTexture,
     normalMap: earthNormalMap,
   })
-  const globe = new THREE.Mesh(globeGeometry, globeMaterial)
+  const globe = new Mesh(globeGeometry, globeMaterial)
   group.add(globe)
 
   //Ambient Light
-  const ambientLight = new THREE.AmbientLight(0xffffff, 0.8)
+  const ambientLight = new AmbientLight(0xffffff, 0.8)
   scene.add(ambientLight)
 
   //Marker
   const makeMarker = (name) => {
-    const markerGeometry = new THREE.SphereGeometry(0.2, 8, 16)
-    const markerMaterial = new THREE.MeshBasicMaterial({ color: 0xff0000 })
-    return (name = new THREE.Mesh(markerGeometry, markerMaterial))
+    const markerGeometry = new SphereGeometry(0.2, 8, 16)
+    const markerMaterial = new MeshBasicMaterial({ color: 0xff0000 })
+    return (name = new Mesh(markerGeometry, markerMaterial))
   }
 
   //Place object on globe surface
