@@ -4,7 +4,8 @@ import { createSwitch } from './components/createSwitch'
 import { createCity } from './components/createCity'
 import { createInput } from './components/createInput'
 import { createMessage } from './components/createMessage'
-import { globeInit } from './components/globe/globe'
+import { Globe } from './components/globe/globe'
+import { createCanvasContainer } from './components/globe/components/canvas'
 
 const container = document.querySelector('#app')
 
@@ -80,10 +81,18 @@ const getWeatherData = (cityName) => {
     })
 }
 
+const globeInit = () =>  {
+  const container = createCanvasContainer()
+  const globe = new Globe(container);
+  globe.render();
+}
+
 window.onload = function () {
   createSwitch(container, gridContainer)
-  getWeatherData('Barcelona')
+  //getWeatherData('Barcelona')
   createInput(container, gridContainer, getWeatherData)
   createMessage(container, null, 'Type the name of a city or town into the search field and click add.')
   globeInit()
 }
+
+
