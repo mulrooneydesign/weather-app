@@ -82,9 +82,10 @@ const getWeatherData = (cityName) => {
 }
 
 const globeInit = () =>  {
-  const container = createCanvasContainer()
-  const globe = new Globe(container);
+  const globeContainer = createCanvasContainer()
+  const globe = new Globe(globeContainer);
   globe.render();
+  globe.start()
 }
 
 window.onload = function () {
