@@ -6,4 +6,4 @@ const createMarker = (name) => {
     return (name = new Mesh(markerGeometry, markerMaterial))
 }
 
-export { marker } 
+export { createMarker } 

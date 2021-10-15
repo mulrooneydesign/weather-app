@@ -12,3 +12,5 @@
 
     return object
   }
+
+  export {placeObjectOnGlobe}
