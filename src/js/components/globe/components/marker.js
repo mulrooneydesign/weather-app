@@ -1,8 +1,9 @@
 import { SphereGeometry, MeshBasicMaterial, Mesh } from "three"
 
-const createMarker = (name) => {
-    const markerGeometry = new SphereGeometry(0.2, 8, 16)
-    const markerMaterial = new MeshBasicMaterial({ color: 0xff0000 })
+const createMarker = (name, color) => {
+    console.log(color)
+    const markerGeometry = new SphereGeometry(0.05, 8, 2)
+    const markerMaterial = new MeshBasicMaterial({ color: color })
     return (name = new Mesh(markerGeometry, markerMaterial))
 }
 
