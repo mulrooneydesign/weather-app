@@ -9,6 +9,7 @@ import { RenderLoop } from './systems/RenderLoop'
 import { myLoadingManager} from './systems/myLoadingManager'
 import { createControls } from './controls/control'
 import { createGroup } from './components/group'
+import { placeObjectOnGlobe } from './systems/placeObjectOnGlobe'
 
 
 let camera
@@ -52,7 +53,7 @@ class Globe {
 
     const resizer = new Resizer(container, camera, renderer)
     resizer.onResize = () => {
-      this.render();
+      this.render()
     };
 
   }
