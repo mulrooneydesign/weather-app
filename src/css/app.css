@@ -29,6 +29,8 @@ body {
   display: grid;
   grid-template-columns: 1fr;
   margin: 20px;
+  position: relative;
+  z-index: 1;
 }
 
 label {

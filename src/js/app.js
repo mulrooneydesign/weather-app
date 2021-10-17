@@ -56,6 +56,9 @@ const stateHandler = {
 
 const stateProxy = new Proxy(initialState, stateHandler)
 
+//Cities we've added
+const cities = []
+
 export const tempSwitcher = () => {
   stateProxy.isCelcius = !stateProxy.isCelcius
 }
@@ -74,7 +77,11 @@ const getWeatherData = (cityName) => {
       return response.json()
     })
     .then((data) => {
-      createCity(createDataObject(data), gridContainer)      
+
+      cities.push(createDataObject(data))
+      //send array to createCity
+      createCity(cities, gridContainer)
+
     })
     .catch((error) => {
       createMessage(container, null, error.error)
@@ -90,7 +97,7 @@ const globeInit = () =>  {
 
 window.onload = function () {
   createSwitch(container, gridContainer)
-  //getWeatherData('Barcelona')
+  getWeatherData('Barcelona')
   createInput(container, gridContainer, getWeatherData)
   createMessage(container, null, 'Type the name of a city or town into the search field and click add.')
   globeInit()

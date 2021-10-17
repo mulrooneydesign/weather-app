@@ -10,7 +10,6 @@ import { myLoadingManager} from './systems/myLoadingManager'
 import { createControls } from './controls/control'
 import { createGroup } from './components/group'
 import { placeObjectOnGlobe } from './systems/placeObjectOnGlobe'
-import { createMarker } from './components/marker'
 
 //  Coordinates
 const coords = {
@@ -18,7 +17,7 @@ const coords = {
     longitude: 2.159,
     latitude: 41.3888,
   },
-  dublin: { //coords returned from API are different. Possible returning diffrent Dublin in USA. 
+  dublin: { //coords returned from API are different. Possible returning different Dublin in USA. 
     longitude: -6.266,
     latitude: 53.35,
   },
@@ -61,13 +60,9 @@ class Globe {
 
     sphere = createSphere(5, loadedData.textures.earthColorTexture, loadedData.textures.earthNormalMap )
 
-
     const barcelona = placeObjectOnGlobe('barcelona', coords.barcelona.latitude, coords.barcelona.longitude, 5)
-
     const dublin = placeObjectOnGlobe('dublin', coords.dublin.latitude, coords.dublin.longitude, 5)
-
     const madrid = placeObjectOnGlobe('madrid', coords.madrid.latitude, coords.madrid.longitude, 5)
-
     const sydney = placeObjectOnGlobe('sydney', coords.sydney.latitude, coords.sydney.longitude, 5)
 
     //Array of items to add to the group
