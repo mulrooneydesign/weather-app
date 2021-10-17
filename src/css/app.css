@@ -126,6 +126,7 @@ input:focus,
   padding: 40px;
   box-sizing: border-box;
   right: 20px;
+  z-index: 2;
 }
 
 @media screen and (min-width: 900px) {

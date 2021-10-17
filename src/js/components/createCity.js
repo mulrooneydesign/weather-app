@@ -1,17 +1,15 @@
 import { stringToHTML } from './stringToHTML'
 import { placeObjectOnGlobe } from './globe/systems/placeObjectOnGlobe'
 
-export const createCity = (citiesArray, gridContainer) => {
-
+export const createCity = (citiesArray) => {
   const exists = document.querySelector('.grid')
 
-  if(exists) {
-      exists.remove()
+  if (exists) {
+    exists.remove()
   }
 
   const newContainer = document.createElement('div')
   newContainer.classList.add('grid')
-  console.log(newContainer)
   document.body.appendChild(newContainer)
 
   let theFirstChild = newContainer.firstChild
@@ -37,8 +35,5 @@ export const createCity = (citiesArray, gridContainer) => {
     const radius = 5
 
     placeObjectOnGlobe(name, lon, lat, radius)
-
-  });
-
-
+  })
 }

@@ -88,9 +88,29 @@ const getWeatherData = (cityName) => {
     })
 }
 
+//  Coordinates
+const coords = {
+  barcelona: {
+    longitude: 2.159,
+    latitude: 41.3888,
+  },
+  dublin: { //coords returned from API are different. Possible returning different Dublin in USA. 
+    longitude: -6.266,
+    latitude: 53.35,
+  },
+  madrid: {
+    longitude: -3.7026,
+    latitude: 40.4165,
+  },
+  sydney: {
+    longitude: 151.207,
+    latitude: -33.8679,
+  },
+}
+
 const globeInit = () =>  {
   const globeContainer = createCanvasContainer()
-  const globe = new Globe(globeContainer);
+  const globe = new Globe(globeContainer, coords);
   globe.render();
   globe.start()
 }
