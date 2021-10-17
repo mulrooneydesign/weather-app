@@ -1,5 +1,8 @@
- //Place object on globe surface
-  const placeObjectOnGlobe = (object, lat, lon, radius) => {
+import { createMarker } from './../components/marker'
+
+const placeObjectOnGlobe = (name, lat, lon, radius) => {
+
+    const object = createMarker(name, 0x0000ff)
   
     const latRad = lat * (Math.PI / 180)
     const lonRad = -lon * (Math.PI / 180)

@@ -61,19 +61,14 @@ class Globe {
 
     sphere = createSphere(5, loadedData.textures.earthColorTexture, loadedData.textures.earthNormalMap )
 
-    //Add makers to Globe (object, lat, lon, radius)
-    const barcelonaMarker = createMarker('barcelona', 0x0000ff)
-    const barcelona = placeObjectOnGlobe(barcelonaMarker, coords.barcelona.latitude, coords.barcelona.longitude, 5)
 
-    const dublinMarker = createMarker('dublin', 0xff0000)
-    const dublin = placeObjectOnGlobe(dublinMarker, coords.dublin.latitude, coords.dublin.longitude, 5)
-    console.log(dublinMarker, coords.dublin.latitude, coords.dublin.longitude)
+    const barcelona = placeObjectOnGlobe('barcelona', coords.barcelona.latitude, coords.barcelona.longitude, 5)
 
-    const madridMarker = createMarker('madrid', 0xffff00)
-    const madrid = placeObjectOnGlobe(madridMarker, coords.madrid.latitude, coords.madrid.longitude, 5)
+    const dublin = placeObjectOnGlobe('dublin', coords.dublin.latitude, coords.dublin.longitude, 5)
 
-    const sydneyMarker = createMarker('sydney', 0xffff00)
-    const sydney = placeObjectOnGlobe(sydneyMarker, coords.sydney.latitude, coords.sydney.longitude, 5)
+    const madrid = placeObjectOnGlobe('madrid', coords.madrid.latitude, coords.madrid.longitude, 5)
+
+    const sydney = placeObjectOnGlobe('sydney', coords.sydney.latitude, coords.sydney.longitude, 5)
 
     //Array of items to add to the group
     const groupItems = [sphere, barcelona, dublin, madrid, sydney]
