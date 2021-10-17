@@ -23,7 +23,7 @@ let group
 
 class Globe {
 
-  constructor(container, coords) {  
+  constructor(container, data) {  
  
     scene = createScene()
     camera = createCamera()
@@ -40,13 +40,14 @@ class Globe {
 
     sphere = createSphere(5, loadedData.textures.earthColorTexture, loadedData.textures.earthNormalMap )
 
-    const barcelona = placeObjectOnGlobe('barcelona', coords.barcelona.latitude, coords.barcelona.longitude, 5)
-    const dublin = placeObjectOnGlobe('dublin', coords.dublin.latitude, coords.dublin.longitude, 5)
-    const madrid = placeObjectOnGlobe('madrid', coords.madrid.latitude, coords.madrid.longitude, 5)
-    const sydney = placeObjectOnGlobe('sydney', coords.sydney.latitude, coords.sydney.longitude, 5)
+    //Array of items to hold planet and markers
+    const groupItems = [sphere]
 
-    //Array of items to add to the group
-    const groupItems = [sphere, barcelona, dublin, madrid, sydney]
+    data.forEach((cityMarker,) => {
+      const newMarker = placeObjectOnGlobe(cityMarker.city,cityMarker.latitude, cityMarker.longitude, 5)
+      groupItems.push(newMarker)
+    });
+
     group = createGroup(groupItems)
     scene.add(group)
 

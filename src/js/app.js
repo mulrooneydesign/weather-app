@@ -56,7 +56,6 @@ const stateHandler = {
 
 const stateProxy = new Proxy(initialState, stateHandler)
 
-//Cities we've added
 const cities = []
 
 export const tempSwitcher = () => {
@@ -79,8 +78,14 @@ const getWeatherData = (cityName) => {
     .then((data) => {
 
       cities.push(createDataObject(data))
-      //send array to createCity
       createCity(cities, gridContainer)
+
+      const isGlobe = document.querySelector('.globe')
+      //Performace bad here. Need to remove three instances too?
+      if(isGlobe) {
+        isGlobe.remove()
+      }
+      globeInit()
 
     })
     .catch((error) => {
@@ -88,29 +93,9 @@ const getWeatherData = (cityName) => {
     })
 }
 
-//  Coordinates
-const coords = {
-  barcelona: {
-    longitude: 2.159,
-    latitude: 41.3888,
-  },
-  dublin: { //coords returned from API are different. Possible returning different Dublin in USA. 
-    longitude: -6.266,
-    latitude: 53.35,
-  },
-  madrid: {
-    longitude: -3.7026,
-    latitude: 40.4165,
-  },
-  sydney: {
-    longitude: 151.207,
-    latitude: -33.8679,
-  },
-}
-
 const globeInit = () =>  {
   const globeContainer = createCanvasContainer()
-  const globe = new Globe(globeContainer, coords);
+  const globe = new Globe(globeContainer, cities);
   globe.render();
   globe.start()
 }
