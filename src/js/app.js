@@ -14,8 +14,12 @@ const loadedData = myLoadingManager()
 //App entry point in index.html
 const container = document.querySelector('#app')
 
+const title = stringToHTML(`<h1 class="title">Weather App</h1>`)
+container.appendChild(title)
+
 const grid = stringToHTML(`<div class="grid"></div>`)
-const gridContainer = container.insertBefore(grid, null)
+container.appendChild(grid)
+const gridContainer =  document.querySelector('.grid')
 
 //Var to hold metric or imperial units
 let units = ''
@@ -104,6 +108,7 @@ let globe
 
 //Globe creator
 const globeInit = (cities) => {
+  
   const globeContainer = createCanvasContainer()
 
   if (globe) {

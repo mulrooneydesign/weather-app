@@ -23,6 +23,8 @@ body {
 .title {
   margin-left: 20px;
   margin-bottom: 30px;
+  z-index: 1;
+  position: relative;
 }
 
 .grid {
@@ -96,10 +98,13 @@ input:focus,
   margin: var(--all-margin);
   display: grid;
   grid-template-columns: 1fr;
+  z-index: 1;
+  position: relative;
 }
 
 .input-container input {
   width: 100%;
+
 }
 
 .input-container button {

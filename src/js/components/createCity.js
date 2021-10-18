@@ -10,7 +10,10 @@ export const createCity = (citiesArray) => {
 
   const newContainer = document.createElement('div')
   newContainer.classList.add('grid')
-  document.body.appendChild(newContainer)
+
+  const container = document.querySelector('#app')
+
+  container.appendChild(newContainer)
 
   let theFirstChild = newContainer.firstChild
 

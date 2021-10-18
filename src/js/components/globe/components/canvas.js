@@ -1,10 +1,18 @@
 const createCanvasContainer = () => {
-    const container = document.createElement('div')
-    container.classList.add('globe')
-    document.body.appendChild(container)
-    return container
+
+const container = document.querySelector('#app')
+const exists = document.querySelector('.globe')
+
+  if (exists) {
+    return exists
+  } else {
+
+
+    const canvasContainer = document.createElement('div')
+    canvasContainer.classList.add('globe')
+    container.appendChild(canvasContainer)
+    return canvasContainer
+  }
 }
 
 export { createCanvasContainer }
-    
-  

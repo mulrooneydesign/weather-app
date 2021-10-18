@@ -6,7 +6,6 @@ import { createLight } from './components/light'
 import { createRenderer } from './systems/renderer'
 import { Resizer } from './systems/ResizerClass'
 import { RenderLoop } from './systems/RenderLoop'
-
 import { createControls } from './controls/control'
 import { createGroup } from './components/group'
 import { placeObjectOnGlobe } from './systems/placeObjectOnGlobe'
@@ -57,7 +56,6 @@ class Globe {
     group = createGroup(groupItems)
     scene.add(group)
 
-    loop.updatables.push(controls)
     loop.updatables.push(group)
     scene.add(light)
 
@@ -68,7 +66,7 @@ class Globe {
   }
 
   update(data) {
-    //push new city to group
+    //push new city data to group
     data.forEach((cityMarker) => {
       const newMarker = placeObjectOnGlobe(
         cityMarker.city,
@@ -77,6 +75,7 @@ class Globe {
         5
       )
       group.add(newMarker)
+      controls.update()
     })
   }
 
