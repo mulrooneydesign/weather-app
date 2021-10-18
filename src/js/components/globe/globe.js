@@ -3,6 +3,7 @@ import { createCamera } from './components/camera'
 import { createSphere } from './components/sphere'
 import { createScene } from './components/scene'
 import { createLight } from './components/light'
+import { createStarfield } from './components/starfield'
 import { createRenderer } from './systems/renderer'
 import { Resizer } from './systems/ResizerClass'
 import { RenderLoop } from './systems/RenderLoop'
@@ -19,6 +20,7 @@ let loop
 let controls
 let group
 let groupItems
+let starfield
 
 class Globe {
   constructor(container, data, loadedData) {
@@ -26,6 +28,9 @@ class Globe {
     camera = createCamera()
     renderer = createRenderer()
     light = createLight()
+    starfield = createStarfield()
+
+    console.log(starfield)
 
     loop = new RenderLoop(camera, scene, renderer)
 
@@ -57,6 +62,8 @@ class Globe {
     scene.add(group)
 
     loop.updatables.push(group)
+    
+    scene.add(starfield)
     scene.add(light)
 
     const resizer = new Resizer(container, camera, renderer)
