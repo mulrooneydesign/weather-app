@@ -118,6 +118,7 @@ input:focus,
   border: var(--light-border);
   border-radius: var(--border-radius);
   margin-bottom: var(--bottom-margin);
+  background: rgba(0,0,0,0.4);
 }
 
 .message {
