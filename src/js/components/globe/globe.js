@@ -6,7 +6,7 @@ import { createLight} from './components/light'
 import { createRenderer } from './systems/renderer'
 import { Resizer } from './systems/ResizerClass'
 import { RenderLoop } from './systems/RenderLoop'
-import { myLoadingManager} from './systems/myLoadingManager'
+
 import { createControls } from './controls/control'
 import { createGroup } from './components/group'
 import { placeObjectOnGlobe } from './systems/placeObjectOnGlobe'
@@ -17,20 +17,18 @@ let scene
 let light 
 let sphere
 let loop
-let loadedData
 let controls
 let group 
 
 class Globe {
 
-  constructor(container, data) {  
+  constructor(container, data, loadedData) {  
  
     scene = createScene()
     camera = createCamera()
     renderer = createRenderer()
     light = createLight()
 
-    loadedData = myLoadingManager()
     loop = new RenderLoop(camera, scene, renderer);
 
     container.append(renderer.domElement)

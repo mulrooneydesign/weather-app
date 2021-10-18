@@ -6,6 +6,9 @@ import { createInput } from './components/createInput'
 import { createMessage } from './components/createMessage'
 import { Globe } from './components/globe/globe'
 import { createCanvasContainer } from './components/globe/components/canvas'
+import { myLoadingManager} from './components/globe/systems/myLoadingManager'
+
+const loadedData = myLoadingManager()
 
 const container = document.querySelector('#app')
 
@@ -85,7 +88,7 @@ const getWeatherData = (cityName) => {
       if(isGlobe) {
         isGlobe.remove()
       }
-      globeInit()
+      globeInit(cities)
 
     })
     .catch((error) => {
@@ -93,9 +96,9 @@ const getWeatherData = (cityName) => {
     })
 }
 
-const globeInit = () =>  {
+const globeInit = (cities) =>  {
   const globeContainer = createCanvasContainer()
-  const globe = new Globe(globeContainer, cities);
+  const globe = new Globe(globeContainer, cities, loadedData);
   globe.render();
   globe.start()
 }
@@ -105,7 +108,6 @@ window.onload = function () {
   getWeatherData('Barcelona')
   createInput(container, gridContainer, getWeatherData)
   createMessage(container, null, 'Type the name of a city or town into the search field and click add.')
-  globeInit()
 }
 
 
