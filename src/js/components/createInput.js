@@ -27,6 +27,7 @@ export const createInput = (container, referenceNode, fetchFunction) => {
 
       if(input.value !== '') {
         fetchFunction(input.value)
+        input.value = ''
       } else {
         createMessage(container, null, errorMessage)
       }

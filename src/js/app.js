@@ -93,7 +93,7 @@ const getWeatherData = (cityName) => {
       return response.json()
     })
     .then((data) => {
-      cities.push(createDataObject(data))
+      cities.unshift(createDataObject(data))
       createCity(cities, gridContainer)
       globeInit(cities)
     })
