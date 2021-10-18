@@ -18,6 +18,8 @@ It returns the following data and adds it to a grid of items:
 
 It provides a message detailing what has happen or if there is an error. 
 
+There is a button to toggle the output from F to C for the temperature.
+
 I used THREE.js for the 3D parts of this APP.
 
 I used netlify functions to hide the API key from the client. 
@@ -38,9 +40,10 @@ npm run build | yarn netlify dev
 
 
 ## Todos
-Add more client form validation
-Add post processing effects to the THREE scene
-Add floating text notes alongside the city markers
-Add some subtle background images to the main app
-Make user message more mobile friendly. Add swipe functionality.
-Revamp main style choices
+- Add more client form validation
+- Add post processing effects to the THREE scene
+- Add floating text notes alongside the city markers
+- Add some subtle background images to the main app
+- Make user message more mobile friendly. Add swipe functionality.
+- Revamp main style choices
+- Change all temperatures when C/F button is toggled
