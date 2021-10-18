@@ -6,17 +6,21 @@ import { createInput } from './components/createInput'
 import { createMessage } from './components/createMessage'
 import { Globe } from './components/globe/globe'
 import { createCanvasContainer } from './components/globe/components/canvas'
-import { myLoadingManager} from './components/globe/systems/myLoadingManager'
+import { myLoadingManager } from './components/globe/systems/myLoadingManager'
 
+//Loads textures
 const loadedData = myLoadingManager()
 
+//App entry point in index.html
 const container = document.querySelector('#app')
 
 const grid = stringToHTML(`<div class="grid"></div>`)
 const gridContainer = container.insertBefore(grid, null)
 
+//Var to hold metric or imperial units
 let units = ''
 
+//Creates an object to render the data for each fetched item
 const createDataObject = (data, units) => {
   if (stateProxy.isCelcius) {
     units = 'metric'
@@ -45,26 +49,32 @@ const createDataObject = (data, units) => {
   return fetchedData
 }
 
+//Holds whether where in celcius or imperial
 const initialState = {
   isCelcius: true,
 }
 
+//Watches for changes in temp units an calls createMessage when they are changed
 const stateHandler = {
   set: function (obj, prop, value) {
     createMessage(container, null, 'Temperature units changed')
     obj[prop] = value
     return true
-  }
+  },
 }
 
 const stateProxy = new Proxy(initialState, stateHandler)
 
+//Var to hold cities
 const cities = []
 
+
+//Export switch for temp unit choice
 export const tempSwitcher = () => {
   stateProxy.isCelcius = !stateProxy.isCelcius
 }
 
+//Main Fetch get the data on each city from API and adds it to the cities object via createDataObject
 const getWeatherData = (cityName) => {
   if (stateProxy.isCelcius) {
     units = 'metric'
@@ -79,35 +89,40 @@ const getWeatherData = (cityName) => {
       return response.json()
     })
     .then((data) => {
-
       cities.push(createDataObject(data))
       createCity(cities, gridContainer)
-
-      const isGlobe = document.querySelector('.globe')
-      //Performace bad here. Need to remove three instances too?
-      if(isGlobe) {
-        isGlobe.remove()
-      }
       globeInit(cities)
-
     })
     .catch((error) => {
       createMessage(container, null, error.error)
     })
 }
 
-const globeInit = (cities) =>  {
+
+//Globe variable
+let globe
+
+//Globe creator
+const globeInit = (cities) => {
   const globeContainer = createCanvasContainer()
-  const globe = new Globe(globeContainer, cities, loadedData);
-  globe.render();
-  globe.start()
+
+  if (globe) {
+    globe.update(cities)
+  } else {
+    globe = new Globe(globeContainer, cities, loadedData)
+    globe.render()
+    globe.start()
+  }
 }
 
+//Start the app once everything is loaded
 window.onload = function () {
   createSwitch(container, gridContainer)
   getWeatherData('Barcelona')
   createInput(container, gridContainer, getWeatherData)
-  createMessage(container, null, 'Type the name of a city or town into the search field and click add.')
+  createMessage(
+    container,
+    null,
+    'Type the name of a city or town into the search field and click add.'
+  )
 }
-
-

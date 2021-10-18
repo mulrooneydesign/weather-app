@@ -8,13 +8,6 @@ const createSphere = (size, map, normalMap) => {
   })
   const sphere = new Mesh(geometry, material)
 
-  const radiansPerSecond = MathUtils.degToRad(30)
-
-  // this method will be called once per frame
-  sphere.tick = (delta) => {
-    sphere.rotation.y -= radiansPerSecond * delta * 0.25
-  }
-
   return sphere
 }
 
