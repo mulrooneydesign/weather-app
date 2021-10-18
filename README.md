@@ -2,6 +2,9 @@
 
 An example of a weather app written without a front-end framework.
 
+Link to demo: 
+[https://weather-app-mulrooney.netlify.app/](https://weather-app-mulrooney.netlify.app/) 
+
 ## Functionality
 
 The app lets you type in any city in the world then places a marker on the globe with that cities location.
