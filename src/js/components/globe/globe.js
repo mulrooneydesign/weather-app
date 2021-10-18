@@ -6,7 +6,7 @@ import { createLight } from './components/light'
 import { createStarfield } from './components/starfield'
 import { createRenderer } from './systems/renderer'
 import { Resizer } from './systems/ResizerClass'
-import { RenderLoop } from './systems/RenderLoop'
+import { RenderLoop } from './systems/renderLoop'
 import { createControls } from './controls/control'
 import { createGroup } from './components/group'
 import { placeObjectOnGlobe } from './systems/placeObjectOnGlobe'
@@ -62,7 +62,7 @@ class Globe {
     scene.add(group)
 
     loop.updatables.push(group)
-    
+
     scene.add(starfield)
     scene.add(light)
 
